@@ -31,8 +31,6 @@ workflows:
   test:
     jobs:
       - build:
-          context:
-            - ruby-version
           matrix:
             parameters:
               ruby_version: ["2.6.6", "2.7.2", "3.0.0"]
