@@ -15,7 +15,7 @@ jobs:
   build:
     executor: ruby-executor
     parameters:
-      version:
+      ruby_version:
         type: string
     steps:
       - checkout
