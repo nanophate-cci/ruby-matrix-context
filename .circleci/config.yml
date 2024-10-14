@@ -1,10 +1,5 @@
 version: 2.1
 
-parameters:
-  rails_versions:
-    type: string
-    default: "7.1"
-
 executors:
   ruby-executor:
     docker:
@@ -17,6 +12,9 @@ jobs:
       ruby_version:
         type: string
         default: ""
+      rails_versions:
+        type: string
+        default: "7.1"
     steps:
       - checkout
       - run:
@@ -34,4 +32,4 @@ workflows:
           matrix:
             parameters:
               ruby_version: ["2.6.6", "2.7.2", "3.0.0", "3.3.5"]
-              rails_version: ["6.1", "7.0", << pipeline.parameters.rails_versions >>]
+              rails_version: ["6.1", "7.0"]
