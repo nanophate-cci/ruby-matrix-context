@@ -1,25 +1,15 @@
 version: 2.1
 
-executors:
-  ruby-executor:
-    docker:
-      - image: cimg/ruby:<< parameters.ruby_version >>
-
 jobs:
   build:
-    executor: ruby-executor
     parameters:
       ruby_version:
         type: string
         default: ""
-      rails_versions:
-        type: string
-        default: "7.1"
+    docker:
+      - image: cimg/ruby:<< parameters.ruby_version >>
     steps:
       - checkout
-      - run:
-          name: Rails install 
-          command: gem install -v << parameters.rails_version >>
       - run:
           name: Run Tests
           command: bundle exec rspec
@@ -32,4 +22,3 @@ workflows:
           matrix:
             parameters:
               ruby_version: ["2.6.6", "2.7.2", "3.0.0", "3.3.5"]
-              rails_version: ["6.1", "7.0"]
